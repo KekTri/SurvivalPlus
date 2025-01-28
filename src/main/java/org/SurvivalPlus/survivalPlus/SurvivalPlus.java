@@ -9,7 +9,9 @@ public final class SurvivalPlus extends JavaPlugin {
         // Plugin startup logic
 
     }
+    public void test(){
 
+    }
     @Override
     public void onDisable() {
         // Plugin shutdown logic
