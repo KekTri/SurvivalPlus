@@ -16,4 +16,7 @@ public final class SurvivalPlus extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+    public static void test2 () {
+        //
+    }
 }
