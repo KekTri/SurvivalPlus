@@ -9,8 +9,13 @@ public final class SurvivalPlus extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new BlockListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new ServerListener(), this);
+        getServer().getPluginManager().registerEvents(new VehicleListener(), this);
+        getServer().getPluginManager().registerEvents(new WorldListener(), this);
     }
 
     @Override
