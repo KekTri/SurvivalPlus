@@ -42,7 +42,7 @@ Variablen Deklaration
         getServer().getPluginManager().registerEvents(new VehicleListener(), this);
         getServer().getPluginManager().registerEvents(new WorldListener(), this);
         getServer().getPluginManager().registerEvents(new FurnaceUpgradeListener(this), this);
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new BlazeTeleportListener(this), this);
 
         //Erstelle eine Json Datei zum Speichern
         gson = new Gson();
