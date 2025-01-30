@@ -32,6 +32,7 @@ public final class SurvivalPlus extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new ServerListener(), this);
         getServer().getPluginManager().registerEvents(new VehicleListener(), this);
         getServer().getPluginManager().registerEvents(new WorldListener(), this);
+        getServer().getPluginManager().registerEvents(new FurnaceUpgradeListener(this), this);
     }
 
     @Override
