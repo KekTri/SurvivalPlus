@@ -19,12 +19,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.Objects;
+import hilfsklassen.save_via_json;
 
 
 public final class SurvivalPlus extends JavaPlugin implements Listener {
+/*
+Variablen Deklaration
+ */
+    public static Gson gson;
+
+
 
     @Override
     public void onEnable() {
+        //Registriere Event Listener
         getServer().getPluginManager().registerEvents(new BlockListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
@@ -33,6 +41,10 @@ public final class SurvivalPlus extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new VehicleListener(), this);
         getServer().getPluginManager().registerEvents(new WorldListener(), this);
         getServer().getPluginManager().registerEvents(new FurnaceUpgradeListener(this), this);
+        //Erstelle eine Json Datei zum Speichern
+        gson = new Gson();
+        save_via_json obj = new save_via_json();
+        obj.createDataFile();
     }
 
     @Override
