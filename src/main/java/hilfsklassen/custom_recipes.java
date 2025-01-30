@@ -104,6 +104,4 @@ public class custom_recipes {
         Bukkit.getServer().addRecipe(recipe);
     }
 
-
-
 }

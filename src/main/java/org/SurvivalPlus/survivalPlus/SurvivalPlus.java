@@ -57,6 +57,8 @@ public final class SurvivalPlus extends JavaPlugin {
         rezept.UpgradetNetheriteSword(this);
         rezept.UpgradetNetheritePX(this);
 
+        //Registriere die Commands
+        getCommand("shop").setExecutor(new ShopCommand());
 
     }
 
