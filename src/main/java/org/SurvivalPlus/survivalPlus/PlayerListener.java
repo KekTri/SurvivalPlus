@@ -1,13 +1,19 @@
 package org.SurvivalPlus.survivalPlus;
 
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import hilfsklassen.server;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +27,9 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        // Code für PlayerJoinEvent
         player = event.getPlayer();
+        player.sendMessage("Hallo!");
+        player.playSound(event.getPlayer().getLocation(), Sound.BLOCK_BELL_USE,1.0F,1.0F);
     }
 
     @EventHandler
@@ -58,5 +65,29 @@ public class PlayerListener implements Listener {
         });
 
 
+
     }
+    @EventHandler
+    public void stickClimb(PlayerInteractEvent event)        {
+        /*
+         *  lässt spieler mit stick in main und offhand vertikal blöcke climben
+         *
+         *
+         *
+         * */
+        ItemStack mainHand = event.getPlayer().getInventory().getItemInMainHand();
+        ItemStack offHand = event.getPlayer().getInventory().getItemInOffHand();
+
+        if(mainHand.getType() == Material.STICK && offHand.getType() == Material.STICK ){
+            if(event.getAction()== Action.RIGHT_CLICK_BLOCK){
+                Vector velocity = new Vector(0,0.4,0) ;
+                event.getPlayer().setVelocity(velocity);
+            }
+
+
+        }
+
+
+    }
+
 }

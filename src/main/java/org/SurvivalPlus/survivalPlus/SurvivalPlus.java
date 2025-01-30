@@ -39,33 +39,9 @@ public final class SurvivalPlus extends JavaPlugin implements Listener {
         // Plugin shutdown logic
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("Hallo!");
-        event.getPlayer().playSound(event.getPlayer().getLocation(),Sound.BLOCK_BELL_USE,1.0F,1.0F);
-    }
-    @EventHandler
-    public void onBreed(EntityBreedEvent event) {
-        if (event.getEntity().getType() == EntityType.PIG) {
-            event.getEntity().setGlowing(true);
-        }
-    }
-    @EventHandler
-    public void stickClimb(PlayerInteractEvent event)        {
-        ItemStack mainHand = event.getPlayer().getInventory().getItemInMainHand();
-        ItemStack offHand = event.getPlayer().getInventory().getItemInOffHand();
-
-        if(mainHand.getType() == Material.STICK && offHand.getType() == Material.STICK ){
-            if(event.getAction()== Action.RIGHT_CLICK_BLOCK){
-                Vector velocity = new Vector(0,0.4,0) ;
-                event.getPlayer().setVelocity(velocity);
-            }
 
 
-        }
 
-
-    }
 
 
 
