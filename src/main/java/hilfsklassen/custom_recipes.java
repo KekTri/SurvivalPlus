@@ -16,14 +16,19 @@ import java.util.List;
 
 
 public class custom_recipes {
+
+    /*
+     *
+     * Rezept des Steines der Weißen
+     *
+     * */
+
     public void SteinDerWeißen() {
-        ItemStack stoneOfTheWhite = new ItemStack(Material.DEEPSLATE_TILES); // Verwende 'STONE' als Platzhalter
+        ItemStack stoneOfTheWhite = new ItemStack(Material.DEEPSLATE_TILES);
         ItemMeta meta = stoneOfTheWhite.getItemMeta();
         if (meta != null) {
-            // Setze den Namen des Items
             meta.setDisplayName("§f§lStein der Weißen");
 
-            // Füge die Lore hinzu (lange Beschreibung)
             List<String> lore = new ArrayList<>();
             lore.add("§9§oDer Stein beschützt dich davor, in das Void zu fallen");
             meta.setLore(lore);
@@ -32,11 +37,73 @@ public class custom_recipes {
             stoneOfTheWhite.setItemMeta(meta);
         }
 
-        // Rezept hinzufügen
         ShapedRecipe recipe = new ShapedRecipe(stoneOfTheWhite);
-        recipe.shape("NNN", "   ", "   "); // # ist der Platzhalter für das 'freie Feld'
-        recipe.setIngredient('N', Material.NETHERITE_BLOCK); // 'N' für Netherite-Ingot
+        recipe.shape("NNN", "   ", "   ");
+        recipe.setIngredient('N', Material.NETHERITE_BLOCK);
         Bukkit.getServer().addRecipe(recipe);
     }
+
+    /*
+     *
+     * Rezept für Netherite Schwert
+     *
+     * */
+
+    public void UpgradetNetheriteSword(JavaPlugin plugin) {
+        ItemStack upgradedSword = new ItemStack(Material.NETHERITE_SWORD);
+        ItemMeta meta = upgradedSword.getItemMeta();
+
+        if (meta != null) {
+            meta.setDisplayName("§fNetherite Sword (Upgraded)");
+
+            meta.addEnchant(Enchantment.UNBREAKING, 5, true);
+            meta.addEnchant(Enchantment.LOOTING, 6, true);
+
+            meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "unique_sword_id"), PersistentDataType.STRING, "upgraded_netherite_sword");
+
+            upgradedSword.setItemMeta(meta);
+        }
+
+        NamespacedKey key = new NamespacedKey(plugin, "upgraded_netherite_sword");
+        ShapedRecipe recipe = new ShapedRecipe(key, upgradedSword);
+        recipe.shape(" N ", " N ", " S ");
+        recipe.setIngredient('N', Material.NETHERITE_BLOCK);
+        recipe.setIngredient('S', Material.STICK);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+
+    /*
+     *
+     * Rezept für Netherite Pickaxe
+     *
+     * */
+    public void UpgradetNetheritePX(JavaPlugin plugin) {
+        ItemStack UpgradetNetheritePX = new ItemStack(Material.NETHERITE_PICKAXE);
+        ItemMeta meta = UpgradetNetheritePX.getItemMeta();
+
+        if (meta != null) {
+            meta.setDisplayName("§fNetherite Pickaxe (Upgraded)");
+            meta.addEnchant(Enchantment.UNBREAKING, 5, true);
+
+            List<String> lore = new ArrayList<>();
+            lore.add("§9Hat besondere Features");
+            meta.setLore(lore);
+
+            meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "unique_pickaxe_id"), PersistentDataType.STRING, "upgraded_netherite_pickaxe");
+
+            UpgradetNetheritePX.setItemMeta(meta);
+        }
+
+        NamespacedKey key = new NamespacedKey(plugin, "upgraded_netherite_pickaxe");
+        ShapedRecipe recipe = new ShapedRecipe(key, UpgradetNetheritePX);
+        recipe.shape("NNN", " S ", " S ");
+        recipe.setIngredient('N', Material.NETHERITE_BLOCK);
+        recipe.setIngredient('S', Material.STICK);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+
+
 
 }

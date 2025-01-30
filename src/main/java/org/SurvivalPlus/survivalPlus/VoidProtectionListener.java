@@ -19,6 +19,13 @@ public class VoidProtectionListener implements Listener {
 
     private final JavaPlugin plugin;
 
+    /**
+     *
+     *
+     * Skript für Funkionalität des Steines der Weißen.
+     *
+     */
+
     public VoidProtectionListener(JavaPlugin plugin) {
         this.plugin = plugin;
     }

@@ -49,9 +49,11 @@ public final class SurvivalPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlazeTeleportListener(this), this);
         getServer().getPluginManager().registerEvents(new VoidProtectionListener(this), this);
 
-
+        //Registrierung der Item Rezepte
         custom_recipes rezept = new custom_recipes();
         rezept.SteinDerWeißen();
+        rezept.UpgradetNetheriteSword(this);
+        rezept.UpgradetNetheritePX(this);
 
 
     }
