@@ -97,3 +97,17 @@ public class save_via_json extends JavaPlugin {
 
 }
 
+/*
+
+String chestKey = "chest_location_1";
+saveLocation(chestKey, new Location(world, x, y, z));
+
+Location loadedLocation = loadLocation(chestKey);
+String worldName = loadedLocation.getWorld().getName();
+    double x = loadedLocation.getX();
+    double y = loadedLocation.getY();
+    double z = loadedLocation.getZ();
+
+
+*/
+
