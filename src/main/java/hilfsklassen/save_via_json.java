@@ -22,7 +22,7 @@ public class save_via_json extends JavaPlugin {
 
 
     public void createDataFile() {
-        dataFile = new File(getDataFolder(), "data.json");
+        dataFile = new File(getDataFolder(), "speicherdaten.json");
         if (!dataFile.exists()) {
             dataFile.getParentFile().mkdirs();
             try {
@@ -95,19 +95,24 @@ public class save_via_json extends JavaPlugin {
         return null;
     }
 
+
+
+
 }
 
 /*
+Usage:
+
+save_via_json speicher = new save_via_json();
 
 String chestKey = "chest_location_1";
-saveLocation(chestKey, new Location(world, x, y, z));
+speicher.saveLocation(chestKey, new Location(world, x, y, z));
 
-Location loadedLocation = loadLocation(chestKey);
+Location loadedLocation = speicher.loadLocation(chestKey);
 String worldName = loadedLocation.getWorld().getName();
     double x = loadedLocation.getX();
     double y = loadedLocation.getY();
     double z = loadedLocation.getZ();
-
 
 */
 
