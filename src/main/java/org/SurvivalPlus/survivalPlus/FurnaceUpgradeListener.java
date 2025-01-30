@@ -93,9 +93,9 @@ public class FurnaceUpgradeListener implements Listener {
             BlockState state = block.getState();
             if (!(state instanceof Furnace furnace)) return;
 
-            // Wenn der Furnace ein Diamond Furnace ist, beschleunige ihn
-            if (furnace.getPersistentDataContainer().has(diamondFurnaceKey, PersistentDataType.INTEGER)) {
-                // Wir erhöhen die Schmelzgeschwindigkeit, indem wir die CookTime verringern
+            // Wenn der Furnace ein Diamond/Netherite Furnace ist, beschleunige ihn
+            if (furnace.getPersistentDataContainer().has(diamondFurnaceKey, PersistentDataType.INTEGER)||furnace.getPersistentDataContainer().has(netheriteFurnaceKey, PersistentDataType.INTEGER) ){
+                // Wir erhöhen die Schmelzgeschwindigkeit, indem wir die CookTime erhöhen
                 if (furnace.getCookTime() < furnace.getCookTimeTotal()) {
                     furnace.setCookTime((short) (furnace.getCookTime() + 1)); // Schneller schmelzen
                     furnace.update();
