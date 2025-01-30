@@ -51,23 +51,21 @@ public final class SurvivalPlus extends JavaPlugin implements Listener {
         }
     }
     @EventHandler
-    public void stickJump(PlayerInteractEvent event)        {
+    public void stickClimb(PlayerInteractEvent event)        {
         ItemStack mainHand = event.getPlayer().getInventory().getItemInMainHand();
         ItemStack offHand = event.getPlayer().getInventory().getItemInOffHand();
 
         if(mainHand.getType() == Material.STICK && offHand.getType() == Material.STICK ){
-            if(event.getAction()== Action.LEFT_CLICK_BLOCK){
-                Vector velocity = Objects.requireNonNull(event.getClickedBlock()).getLocation().toVector().subtract(event.getPlayer().getLocation().toVector()).multiply(3);
+            if(event.getAction()== Action.RIGHT_CLICK_BLOCK){
+                Vector velocity = new Vector(0,0.4,0) ;
                 event.getPlayer().setVelocity(velocity);
-
-
             }
 
 
-           }
-
-
         }
+
+
+    }
 
 
 
