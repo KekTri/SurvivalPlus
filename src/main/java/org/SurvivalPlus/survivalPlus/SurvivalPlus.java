@@ -48,6 +48,8 @@ public final class SurvivalPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FurnaceUpgradeListener(this), this);
         getServer().getPluginManager().registerEvents(new BlazeTeleportListener(this), this);
         getServer().getPluginManager().registerEvents(new VoidProtectionListener(this), this);
+        getServer().getPluginManager().registerEvents(new PickaxeBreakListener(this), this);
+
 
         //Registrierung der Item Rezepte
         custom_recipes rezept = new custom_recipes();
