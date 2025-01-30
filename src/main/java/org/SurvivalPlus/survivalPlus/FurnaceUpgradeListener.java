@@ -1,5 +1,6 @@
 package org.SurvivalPlus.survivalPlus;
 
+import org.bukkit.event.block.Action;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -29,6 +30,7 @@ public class FurnaceUpgradeListener implements Listener {
     @EventHandler
     public void onFurnaceUpgrade(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
+        if (event.getAction() != Action.LEFT_CLICK_BLOCK) return;
         if (block == null) return;
 
         ItemStack mainHand = event.getPlayer().getInventory().getItemInMainHand();
@@ -43,6 +45,12 @@ public class FurnaceUpgradeListener implements Listener {
     private void upgradeToDiamondFurnace(Block block, PlayerInteractEvent event) {
         BlockState state = block.getState();
         if (state instanceof Furnace furnace) {
+            // **Überprüfung, ob der Ofen bereits ein Diamond Furnace ist**
+            if (furnace.getPersistentDataContainer().has(diamondFurnaceKey, PersistentDataType.INTEGER)) {
+                event.getPlayer().sendMessage("❌ Dieser Ofen ist bereits ein Diamond Furnace!");
+                return; // Abbruch des Upgrade-Prozesses
+            }
+
             furnace.getPersistentDataContainer().set(diamondFurnaceKey, PersistentDataType.INTEGER, 1);
             furnace.setCustomName("💎 Diamond Furnace");
             furnace.update();
@@ -57,9 +65,16 @@ public class FurnaceUpgradeListener implements Listener {
         BlockState state = block.getState();
         if (!(state instanceof Furnace furnace)) return;
 
+        // **Überprüfung, ob der Ofen zuerst ein Diamond Furnace sein muss**
         if (!furnace.getPersistentDataContainer().has(diamondFurnaceKey, PersistentDataType.INTEGER)) {
             event.getPlayer().sendMessage("❌ Du musst den Furnace zuerst mit Diamant upgraden!");
-            return;
+            return; // Abbruch des Upgrade-Prozesses
+        }
+
+        // **Überprüfung, ob der Ofen bereits ein Netherite Furnace ist**
+        if (furnace.getPersistentDataContainer().has(netheriteFurnaceKey, PersistentDataType.INTEGER)) {
+            event.getPlayer().sendMessage("❌ Dieser Ofen ist bereits ein Netherite Furnace!");
+            return; // Abbruch des Upgrade-Prozesses
         }
 
         furnace.getPersistentDataContainer().set(netheriteFurnaceKey, PersistentDataType.INTEGER, 1);
@@ -82,11 +97,11 @@ public class FurnaceUpgradeListener implements Listener {
             if (furnace.getPersistentDataContainer().has(diamondFurnaceKey, PersistentDataType.INTEGER)) {
                 // Wir erhöhen die Schmelzgeschwindigkeit, indem wir die CookTime verringern
                 if (furnace.getCookTime() < furnace.getCookTimeTotal()) {
-                    furnace.setCookTime((short) (furnace.getCookTime()+1)); // Schneller schmelzen
+                    furnace.setCookTime((short) (furnace.getCookTime() + 1)); // Schneller schmelzen
                     furnace.update();
                 }
             }
-        }, 0L, 1L); // Task wird alle 10 Ticks ausgeführt
+        }, 0L, 1L); // Task wird alle 1 Ticks ausgeführt
     }
 
     @EventHandler
@@ -104,10 +119,6 @@ public class FurnaceUpgradeListener implements Listener {
     }
 
     private void consumeItem(ItemStack item) {
-        if (item.getAmount() > 1) {
-            item.setAmount(item.getAmount() - 1);
-        } else {
-            item.setType(Material.AIR);
-        }
+        item.setAmount(item.getAmount() - 1); // Reduziert die Anzahl des Items um 1
     }
 }
