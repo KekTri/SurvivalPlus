@@ -104,4 +104,27 @@ public class custom_recipes {
         Bukkit.getServer().addRecipe(recipe);
     }
 
+    public void EggShop(JavaPlugin plugin) {
+        ItemStack EggShop = new ItemStack(Material.BOOKSHELF);
+        ItemMeta meta = EggShop.getItemMeta();
+
+        if (meta != null) {
+            meta.setDisplayName("§fEgg Shop");
+
+            List<String> lore = new ArrayList<>();
+            lore.add("§9Öffnet einen Eier Shop");
+            meta.setLore(lore);
+
+            meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "unique_eggshop_id"), PersistentDataType.STRING, "eggshop");
+
+            EggShop.setItemMeta(meta);
+        }
+
+        NamespacedKey key = new NamespacedKey(plugin, "eggshop");
+        ShapedRecipe recipe = new ShapedRecipe(key, EggShop);
+        recipe.shape("D D", "D D", "D D");
+        recipe.setIngredient('D', Material.DIAMOND);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
 }

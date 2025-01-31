@@ -1,10 +1,12 @@
 package org.SurvivalPlus.survivalPlus;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class InventoryListener implements Listener {
 
@@ -13,7 +15,7 @@ public class InventoryListener implements Listener {
 
         /*
         *
-        * Verhindere das Entfernen von Items aus dem Egg Shop (/shop)
+        * Verhindere das Entfernen von Items aus dem Egg Shop
         *
         * */
 
@@ -22,6 +24,33 @@ public class InventoryListener implements Listener {
                 event.setCancelled(true);
             }
         }
+
+        /*
+        *
+        * Kaufen eines Items
+        *
+        * */
+
+        if (event.getView().getTitle().equals("Egg Shop")) {
+            event.setCancelled(true);
+            Player player = (Player) event.getWhoClicked();
+            ItemStack clickedItem = event.getCurrentItem();
+
+            if (clickedItem != null && clickedItem.getType() != Material.AIR) {
+                if (player.getInventory().contains(Material.DIAMOND_BLOCK, 16)) {
+
+                    player.getInventory().removeItem(new ItemStack(Material.DIAMOND_BLOCK, 16));
+                    ItemStack itemToGive = new ItemStack(clickedItem.getType());
+                    player.getInventory().addItem(itemToGive);
+                    player.sendMessage("§aDu hast " + clickedItem.getType().toString().toLowerCase().replace("_", " ") + " gekauft!");
+                    player.closeInventory();
+                } else {
+                    player.sendMessage("§cDu benötigst 16 Diablöcke, um dieses Item zu kaufen.");
+                }
+            }
+        }
+
+
     }
 
     @EventHandler

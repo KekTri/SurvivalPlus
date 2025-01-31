@@ -17,7 +17,11 @@ import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
-
+/*
+*
+* Skript für die Logik der Upgraded Spitzhacke. Was sie abbauen darf und wie sie es abbaut.
+*
+* */
 
 public class PickaxeBreakListener implements Listener {
     private final JavaPlugin plugin;

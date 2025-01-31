@@ -26,15 +26,15 @@ public class ShopGUI {
         };
 
         String[] descriptions = {
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias",
-                "§a§l64x Dias"
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke",
+                "§a§l16x Dia Blöcke"
         };
 
         for (int i = 0; i < 9; i++) {

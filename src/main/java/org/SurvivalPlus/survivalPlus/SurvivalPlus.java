@@ -31,7 +31,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-
+/*
+*
+* Main Klasse - Hier werden Prozesse bei Beginn und Ende des Server registriert.
+*
+* */
 
 
 public final class SurvivalPlus extends JavaPlugin {
@@ -49,6 +53,7 @@ public final class SurvivalPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlazeTeleportListener(this), this);
         getServer().getPluginManager().registerEvents(new VoidProtectionListener(this), this);
         getServer().getPluginManager().registerEvents(new PickaxeBreakListener(this), this);
+        getServer().getPluginManager().registerEvents(new EggShopListener(this), this);
 
 
         //Registrierung der Item Rezepte
@@ -56,10 +61,7 @@ public final class SurvivalPlus extends JavaPlugin {
         rezept.SteinDerWeißen();
         rezept.UpgradetNetheriteSword(this);
         rezept.UpgradetNetheritePX(this);
-
-        //Registriere die Commands
-        getCommand("shop").setExecutor(new ShopCommand());
-
+        rezept.EggShop(this);
     }
 
     @Override
