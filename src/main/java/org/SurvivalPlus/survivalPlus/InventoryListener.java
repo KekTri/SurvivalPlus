@@ -27,7 +27,7 @@ public class InventoryListener implements Listener {
 
         /*
         *
-        * Kaufen eines Items
+        * Kaufen eines Items im EGG Shop
         *
         * */
 

@@ -1,35 +1,11 @@
 package org.SurvivalPlus.survivalPlus;
 
-import com.google.gson.Gson;
-import org.bukkit.*;
-import org.bukkit.entity.EntityType;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityBreedEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.Vector;
 
-import java.util.List;
-import java.util.Objects;
+import org.bukkit.plugin.java.JavaPlugin;
 import hilfsklassen.*;
+import randomFruitEffekts.*;
+import BossFights.*;
 
-
-
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 
 /*
 *
@@ -39,8 +15,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 
 public final class SurvivalPlus extends JavaPlugin {
+    private static SurvivalPlus instance;
+
     @Override
     public void onEnable() {
+        //Erstellen einer Plugin Instanz
+        instance = this;
+
         //Registriere Event Listener
         getServer().getPluginManager().registerEvents(new BlockListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
@@ -54,6 +35,9 @@ public final class SurvivalPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new VoidProtectionListener(this), this);
         getServer().getPluginManager().registerEvents(new PickaxeBreakListener(this), this);
         getServer().getPluginManager().registerEvents(new EggShopListener(this), this);
+        getServer().getPluginManager().registerEvents(new AppleHeartBonus(), this);
+        getServer().getPluginManager().registerEvents(new trigger(), this);
+
 
 
         //Registrierung der Item Rezepte
@@ -67,6 +51,9 @@ public final class SurvivalPlus extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+    public static SurvivalPlus getInstance() {
+        return instance;
     }
 
 }
